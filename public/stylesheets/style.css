@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+.content{
+  color: #242424;
+  background-color: #f25fff;
+  font-weight: 600;
+  text-align: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 10px;
+
+}
+
+
