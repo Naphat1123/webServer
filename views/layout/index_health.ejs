@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+
+<% if(messages.error) { %>
+    <div class="alert alert-danger" role="alert">
+        <%= messages.error %>
+    </div>
+    <% } %>
+        <% if(messages.success) { %>
+            <div class="alert alert-success" role="alert">
+                <%= messages.success %>
+            </div>
+            <% } %>
+
+                <a class="btn btn-primary" href="/health_center/">Go back</a>
+                <br>
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-pills w-100">
+                            <li class="nav-link">
+                                <%= name %>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <% if(data.length) { %>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">วันที่</th>
+                                        <th scope="col">รายการ</th>
+                                        <th scope="col">การแจ้ง</th>
+                                        <th scope="col">กำหนดส่ง</th>
+                                        <th scope="col">ไฟล์แนบ</th>
+                                        <th scope="col">ผู้แจ้ง</th>
+                                        <th scope="col">ส่งไฟล์</th>
+                                        <th scope="col">ไฟล์ที่ส่ง</th>
+                                        <th width="200px">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for(let i=0; i < data.length; i++) { %>
+                                        <tr>
+                                            <th scope="row">
+                                                <%= data[i].id %>
+                                            </th>
+                                            <td>
+                                                <%= data[i].date %>
+                                            </td>
+                                            <td>
+                                                <%= data[i].title %>
+                                            </td>
+
+                                            <td>
+                                                <%= data[i].report %>
+                                            </td>
+
+                                            <td>
+                                                <%= data[i].deadline %>
+                                            </td>
+                                            <td>
+                                                <a href="<%= data[i].file_data %>">
+                                                    <%= data[i].file_data %>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <%= data[i].fullname %>
+                                            </td>
+
+                                            <td>
+                                                <form action="/health_center/<%= name %>/<%= data[i].id %>" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    <div class="form-group">
+                                                        <input type="file" name="file">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="submit" class="btn btn-info" value="add">
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <a href="<%= data[i].file_data_health %>">
+                                                    <%= data[i].file_data_health %>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="/health_center/<%= name %>/edit/<%= data[i].id %>"
+                                                    class="btn btn-success edit">Edit</a>
+                                                <a href="/health_center/<%= name %>/delete/<%= data[i].id %>"
+                                                    onclick="return alert('Are you sure?')"
+                                                    class="btn btn-danger delete">Delete</a>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                            <% } %>
+
+                                <!-- if result is empty -->
+                                <% if(!data.length) { %>
+                                    <p class="text-center">No File found!</p>
+                                    <% } %>
+                    </div>
