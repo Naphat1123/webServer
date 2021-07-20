@@ -373,7 +373,7 @@ router.get("/event_images/add", (req, res, next) => {
 // -- START POST event_images --
 router.post("/event_images/add", (req, res, next) => {
   let title = req.body.title;
-  let err = false
+  let err = false;
 
   if (req.files) {
     let file = req.files.file;
@@ -387,28 +387,42 @@ router.post("/event_images/add", (req, res, next) => {
     });
   }
 
-  
-    let form_data = {
-      title: title,
-      file_images: filename,
-    };
+  let form_data = {
+    title: title,
+    file_images: filename,
+  };
 
-    dbCon.query(`INSERT INTO event_images SET ?`, form_data, (err, result) => {
-      if (err) {
-        req.flash("error", err);
+  dbCon.query(`INSERT INTO event_images SET ?`, form_data, (err, result) => {
+    if (err) {
+      req.flash("error", err);
 
-        res.render(`dashboard/event_images/add`, {
-          title: title,
-          file_images: filename,
-        });
-      } else {
-        req.flash("success", "Data success added");
-        res.redirect(`/dashboard/event_images`);
-      }
-    });
-  
+      res.render(`dashboard/event_images/add`, {
+        title: title,
+        file_images: filename,
+      });
+    } else {
+      req.flash("success", "Data success added");
+      res.redirect(`/dashboard/event_images`);
+    }
+  });
 });
 // -- END POST event_images --
+
+// -- START DELETE event_images --
+router.get("/event_images/delete/:id", (req, res, next) => {
+  let id = req.params.id;
+
+  dbCon.query(`DELETE  FROM event_images WHERE id = ${id}`),
+    (err, result) => {
+      if (result.length === 0) {
+        req.flash("error", err);
+      } else {
+        req.flash("success", "Delete complete");
+        res.redirect("/dashboard/event_images");
+      }
+    };
+});
+// -- END DELETE event_images --
 // <!-- END PAGE event_images -->
 
 // ------------------------------------------------------------------------------------------------

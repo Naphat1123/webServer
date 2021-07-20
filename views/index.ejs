@@ -111,28 +111,15 @@
             <h3>ภาพกิจจกรรม</h3>
             <div class="gallery-wrapper">
               <div class="gallery-scroll">
-                <div class="gallery">
-                  <div class="item">
-                    <img
-                      src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-                      alt="Image" />
+                <% if(data3.length) { %>
+                  <div class="gallery">
+                    <% for (let i=0;i < data3.length;i++) { %>
+                      <div class="item">
+                        <img src="/event_images/<%= data3[i].file_images %>" alt="Image" />
+                      </div>
+                      <% } %>
                   </div>
-                  <div class="item">
-                    <img
-                      src="https://images.unsplash.com/photo-1471922694854-ff1b63b20054?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-                      alt="Image" />
-                  </div>
-                  <div class="item">
-                    <img
-                      src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-                      alt="Image" />
-                  </div>
-                  <div class="item">
-                    <img
-                      src="https://images.unsplash.com/photo-1476673160081-cf065607f449?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60"
-                      alt="Image" />
-                  </div>
-                </div>
+                  <% } %>
               </div>
             </div>
           </div>
@@ -143,7 +130,7 @@
               reiciendis quo possimus.</p>
           </div>
 
-          <div class="content" >
+          <div class="content">
             <iframe
               src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FUHC-Uthai-Thani-Healthy-Channel-115070913245377&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
               width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"

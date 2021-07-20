@@ -116,7 +116,7 @@ router.post("/:name/:id", (req, res) => {
 
   if (req.files) {
     let file = req.files.file;
-    let uploadPath = "./upload_health/" + file.name;  
+    let uploadPath = "./public/upload_health/" + file.name;  
     var filename = file.name;
 
     file.mv(uploadPath, (err) => {
@@ -160,7 +160,7 @@ router.post("/:name/add", (req, res) => {
   let deadline = req.body.deadline;
   let report = req.body.report;
   var file = req.files.file;
-  let uploadPath = "./upload_health/" + file.name;
+  let uploadPath = "./public/upload_health/" + file.name;
   let err = false;
 
   if (req.files) {
