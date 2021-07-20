@@ -1,3 +1,8 @@
 Dockerfile
 .dockerignore
 node_modules
+upload_health
+upload_publicize
+upload 
+event_images
+upload_order 

@@ -28,7 +28,7 @@ router.post("/order_by_host_health/add", (req, res) => {
   let deadline = req.body.deadline;
   let report = req.body.report;
   var file = req.files.file;
-  let uploadPath = "upload_health/" + file.name;
+  let uploadPath = "public/images/upload_health/" + file.name;
   let err = false;
 
   if (req.files) {
@@ -112,17 +112,16 @@ router.get("/:name", (req, res) => {
 router.post("/:name/:id", (req, res) => {
   let id = req.params.id;
   let name = req.params.name;
-  let file = req.files.file;
-  let uploadPath = "upload_health/" + file.name;
   let err = false;
 
   if (req.files) {
+    let file = req.files.file;
+    let uploadPath = "./upload_health/" + file.name;  
     var filename = file.name;
 
     file.mv(uploadPath, (err) => {
       if (err) {
         req.flash("error", "please insert file");
-        res.redirect(`/health_center/${name}`);
       }
     });
   }
@@ -161,7 +160,7 @@ router.post("/:name/add", (req, res) => {
   let deadline = req.body.deadline;
   let report = req.body.report;
   var file = req.files.file;
-  let uploadPath = "upload_health/" + file.name;
+  let uploadPath = "./upload_health/" + file.name;
   let err = false;
 
   if (req.files) {
@@ -258,7 +257,7 @@ router.post("/:name/edit/:id", (req, res) => {
   let deadline = req.body.deadline;
   let report = req.body.report;
   var file = req.files.file;
-  let uploadPath = "upload/" + file.name;
+  let uploadPath = "public/images/upload/" + file.name;
   let err = false;
 
   if (req.files) {

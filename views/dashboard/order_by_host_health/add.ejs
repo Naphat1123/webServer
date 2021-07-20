@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Add File</title>
+</head>
+
+<body>
+
+    <div class="container bg-light ">
+        <div class="row">
+            <aside class='col-3'>
+                <%- include ../../layout/dashboard_layout/main_layout.ejs %>
+            </aside>
+
+            <main class='col-9'>
+                <div class="container" style="margin-top: 50px;">
+                    <% if(messages.error) { %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= messages.error %>
+                        </div>
+                        <% } %>
+                            <h1>เพิ่มรายการ รพ.สต.</h1>
+                            <br>
+                            <br>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    Add File
+                                </div>
+
+                                <div class="card-body">
+                                    <form action="/dashboard/order_by_host_health/add" method="POST"
+                                        enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label>ชื่อผู้ส่ง</label>
+                                            <input type="text" class="form-control" name="name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>รายการ</label>
+                                            <input type="text" class="form-control" name="title">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>ลักษณะการแจ้ง</label>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="report"
+                                                    value="แจ้งเพื่อทราบ">
+                                                <label class="form-check-label" for="options1">แจ้งเพื่อทราบ</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="radio" class="form-check-input" name="report"
+                                                    value='แจ้งเพื่อดำเนินการ'>
+                                                <label class="form-check-label"
+                                                    for="options2">แจ้งเพื่อดำเนินการ</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>วันที่ส่ง</label>
+                                            <input type="date" class="form-control" name="date">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>กำหนดส่ง</label>
+                                            <input type="date" class="form-control" name="deadline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="file" name="file">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-success" value="add">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                </div>
+            </main>
+
+
+
+
+
+</body>
+
+</html>

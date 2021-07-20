@@ -41,7 +41,7 @@ router.post("/:name/add", (req, res) => {
   let date = req.body.date;
   let file = req.files.file;
   let report = req.body.report;
-  let uploadPath = "upload/" + file.name;
+  let uploadPath = "public/images/upload/" + file.name;
   let err = false;
 
   if (req.files) {
@@ -139,7 +139,7 @@ router.post("/:name/edit/:id", (req, res) => {
   let deadline = req.body.deadline;
   let report = req.body.report;
   var file = req.files.file;
-  let uploadPath = "upload/" + file.name;
+  let uploadPath = "public/images/upload/" + file.name;
   let err = false;
 
   if (req.files) {

@@ -26,7 +26,7 @@ router.post("/add", (req, res, next) => {
   let title = req.body.title;
   let date = req.body.date;
   let file = req.files.file;
-  let uploadPath = "upload_publicize/" + file.name;
+  let uploadPath = "/images/upload_publicize/" + file.name;
   let err = false;
 
   if (req.files) {

@@ -19,8 +19,20 @@
 
     </header>
 
-    <div class="container-fluid">
-      <img src="../images/รูปสำนักงาน.png" width='100%' alt="">
+    <div class="container">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../images/logo.png" class="d-block w-100" alt="..." width="100%" height="350">
+          </div>
+          <div class="carousel-item">
+            <img src="../images/maxresdefault.jpg" class="d-block w-100" alt="..." width="100%" height="350">
+          </div>
+          <div class="carousel-item">
+            <img src="../images/รูปสำนักงาน.png" class="d-block w-100" alt="..." width="100%" height="350">
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="container bg-light ">
@@ -40,14 +52,16 @@
                     <tr>
                       <th scope="col">
                         <a href="/publicize">ข่าวประชาสัมพันธ์</a>
+
                       </th>
+                      <th scope="col">วันที่</th>
                     </tr>
                   </thead>
                   <tbody>
                     <% for (let i=0 ; i < publicize.length ; i++) { %>
                       <tr>
                         <td>
-                          <a href="publicize/<%=publicize[i].file_data %>">
+                          <a href="/upload_publicize/<%=publicize[i].file_data %>">
 
                             <%= publicize[i].title %>
                           </a>
@@ -127,6 +141,14 @@
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad repudiandae, ea recusandae adipisci beatae
               voluptates reprehenderit blanditiis ex quam culpa, voluptatum quas! Dolor repellendus, numquam saepe ipsum
               reiciendis quo possimus.</p>
+          </div>
+
+          <div class="content" >
+            <iframe
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FUHC-Uthai-Thani-Healthy-Channel-115070913245377&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+              width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+              allowfullscreen="true"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
           </div>
 
         </main>

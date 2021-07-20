@@ -71,7 +71,7 @@
                                                 <%= data[i].deadline %>
                                             </td>
                                             <td>
-                                                <a href="<%= data[i].file_data %>">
+                                                <a href="/upload_order/<%= data[i].file_data %>">
                                                     <%= data[i].file_data %>
                                                 </a>
                                             </td>
@@ -90,16 +90,14 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <a href="<%= data[i].file_data_health %>">
+                                                <a href="/upload_health/<%= data[i].file_data_health %>">
                                                     <%= data[i].file_data_health %>
                                                 </a>
                                             </td>
                                             <td>
                                                 <a href="/health_center/<%= name %>/edit/<%= data[i].id %>"
                                                     class="btn btn-success edit">Edit</a>
-                                                <a href="/health_center/<%= name %>/delete/<%= data[i].id %>"
-                                                    onclick="return alert('Are you sure?')"
-                                                    class="btn btn-danger delete">Delete</a>
+                                                
                                             </td>
                                         </tr>
                                         <% } %>
