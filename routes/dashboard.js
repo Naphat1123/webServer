@@ -211,7 +211,7 @@ router.post("/order_by_host_health/add", (req, res, next) => {
         req.flash("error", "please insert file");
       }
     });
-  }
+  } 
   if (fullName.length === 0 || title.length === 0) {
     error = true;
     // set flash msg
@@ -412,18 +412,101 @@ router.post("/event_images/add", (req, res, next) => {
 router.get("/event_images/delete/:id", (req, res, next) => {
   let id = req.params.id;
 
-  dbCon.query(`DELETE  FROM event_images WHERE id = ${id}`),
+  dbCon.query(
+    `DELETE FROM event_images WHERE id = ${id}`,
     (err, result) => {
       if (result.length === 0) {
-        req.flash("error", err);
+        req.flash("error", error);
+        res.redirect("/dashboard/event_images");
       } else {
-        req.flash("success", "Delete complete");
+        req.flash("success", "delete complete");
         res.redirect("/dashboard/event_images");
       }
-    };
+    }
+  );
 });
 // -- END DELETE event_images --
+
 // <!-- END PAGE event_images -->
 
 // ------------------------------------------------------------------------------------------------
+
+// <!-- START PAGE covid_images -->
+
+// -- START GET หน้าแรก covid_images --
+router.get("/covid_images", (req, res, next) => {
+  dbCon.query("SELECT * FROM covid_images ORDER BY id DESC", (err, result) => {
+    if (err) throw err;
+
+    res.render("dashboard/covid_images", { data: result });
+  });
+});
+
+// -- END GET หน้าแรก covid_images --
+
+
+// -- START GET ADD covid_images --
+router.get("/covid_images/add", (req, res, next) => {
+  res.render("dashboard/covid_images/add");
+});
+// -- END GET ADD covid_images --
+
+// -- START POST covid_images --
+router.post("/covid_images/add", (req, res, next) => {
+  let title = req.body.title;
+  let err = false;
+
+  if (req.files) {
+    let file = req.files.file;
+    var filename = file.name;
+    let uploadPath = "./public/covid_images/" + file.name;
+
+    file.mv(uploadPath, (err) => {
+      if (err) {
+        req.flash("error", err);
+      }
+    });
+  }
+
+  let form_data = {
+    title: title,
+    file_images: filename,
+  };
+
+  dbCon.query(`INSERT INTO covid_images SET ?`, form_data, (err, result) => {
+    if (err) {
+      req.flash("error", err);
+
+      res.render(`dashboard/covid_images/add`, {
+        title: title,
+        file_images: filename,
+      });
+    } else {
+      req.flash("success", "Data success added");
+      res.redirect(`/dashboard/covid_images`);
+    }
+  });
+});
+// -- END POST covid_images --
+
+// -- START DELETE covid_images --
+router.get("/covid_images/delete/:id", (req, res, next) => {
+  let id = req.params.id;
+
+  dbCon.query(
+    `DELETE FROM covid_images WHERE id = ${id}`,
+    (err, result) => {
+      if (result.length === 0) {
+        req.flash("error", error);
+        res.redirect("/dashboard/covid_images");
+      } else {
+        req.flash("success", "delete complete");
+        res.redirect("/dashboard/covid_images");
+      }
+    }
+  );
+});
+// -- END DELETE covid_images --
+
+// <!-- END PAGE covid_images -->
 module.exports = router;
